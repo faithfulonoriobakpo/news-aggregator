@@ -1,20 +1,19 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/auth/login/login.component';
 import { userAuthGuard } from './shared/guards/user-auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'news',
         pathMatch: 'full'
     },
     {
-        path: 'login',
-        component: LoginComponent
+        path: 'auth',
+        loadChildren: () => import('./pages/auth/auth.routes')
     },
     {
-        path: 'app',
-        loadChildren: () => import('./pages/user/user.routes'),
+        path: 'news',
+        loadChildren: () => import('./pages/news/news.routes'),
         canActivate: [userAuthGuard]
     }
 ];

@@ -1,0 +1,64 @@
+<div class="all-container">
+    <div class="articles max-w-4xl relative">
+        <div class="search-container flex justify-end pb-3">
+            <form [formGroup]="searchForm">
+                <div class='w-11/12 flex items-center font-normal search-bar border-2 border-gray-300 rounded-md text-sm py-2 px-2'>
+                    <input type="text" formControlName="searchField" class='outline-none bg-transparent w-full' placeholder='Search News Articles'/>
+                </div>
+            </form>
+        </div>
+
+        @if(!loading){
+            @for(
+                article of articles | paginate: {
+                    itemsPerPage: defaultPageSize,
+                    currentPage: page,
+                    totalItems: totalArticles
+                }; 
+                track article.url
+            ){
+                <div class="flex p-4 mb-4 border-gray-400 border rounded-md">
+                    @if(article.urlToImage){
+                        <div class="flex-shrink-0">
+                            <img [src]="article.urlToImage" class="w-32 h-32 rounded" alt="article image"/>
+                        </div>
+                    }
+
+                    <div class="ml-4 w-full h-full relative">
+                        <h2 class="font-bold text-lg">{{article.title}}</h2>
+                        <div class="text-sm text-gray-500">{{article.description}}</div>
+
+                        <div class="flex justify-between align-middle bottom-0 pt-5">
+                            <div>
+                                @if(article.author){<h3 class="text-lg">By {{article.author | truncate: 30}}</h3>}
+                                @else {<h3 class="text-lg">Unknown Author</h3>}
+                            </div>
+    
+                            <div class="flex gap-5 justify-end align-middle">
+                                <a [href]="article.url" class="block font-bold text-red-700" target="_blank">Read Full Article</a>
+                                <p class="text-gray-600 font-bold">Publication Date: <span class="text-gray-900 font-normal text-sm">{{article.publishedAt | date: 'longDate'}}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        @else {
+            <div class="w-full flex justify-center align-middle">
+                <app-loader></app-loader>
+            </div>
+        }
+
+        <div class="flex justify-end">
+            @if(articles && articles.length > 1 && !loading){
+                <pagination-controls
+                    (pageChange)="pageChanged($event)"
+                    nextLabel="Next"
+                    previousLabel="Prev"
+                    [maxSize]=5
+                >
+                </pagination-controls>
+            }
+        </div>
+    </div>
+</div>

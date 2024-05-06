@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ngx-pagination li.current {
+    background-color: red !important;
+}

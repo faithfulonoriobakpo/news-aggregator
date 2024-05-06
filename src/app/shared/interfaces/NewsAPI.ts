@@ -23,14 +23,14 @@ export interface NewAPIResponse {
 
 export interface Article {
     source: {
-        id: number | number,
+        id: any,
         name: string
     },
-    author: string,
+    author: string | null,
     title: string,
     description: string,
     url: string,
-    urlToImage: string,
+    urlToImage: string | null,
     publishedAt: string,
     content: string
 }

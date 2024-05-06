@@ -11,26 +11,18 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  getHeaders(){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return {headers: headers}
-  }
 
   fetchHeadlines(data: HeadlinePayload): Observable<NewAPIResponse>{
-    return this.http.post<NewAPIResponse>(
-      `${environment.baseApiUrl}/get-headlines`,
-      data,
-      this.getHeaders()
+    return this.http.get<NewAPIResponse>(
+      `${environment.baseApiUrl}/top-headlines?q=${data.q}` +
+      `&pageSize=${data.pageSize}&page=${data.page}&category=${data.category}&country=${data.country}`
     );
   }
 
   fetchEverything(data: EverythingPayload): Observable<NewAPIResponse>{
-    return this.http.post<NewAPIResponse>(
-      `${environment.baseApiUrl}/get-everything`,
-      data,
-      this.getHeaders()
+    return this.http.get<NewAPIResponse>(
+      `${environment.baseApiUrl}/everything?q=${data.q}&from=${data.from}&to=${data.to}` +
+        `&language=${data.language}&pageSize=${data.pageSize}&page=${data.page}&searchIn=title,description`,
     );
   }
 }
