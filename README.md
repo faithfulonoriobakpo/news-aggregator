@@ -1,27 +1,35 @@
-# NewsAggregator
+# News Aggregator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+This application allows users to browse and read news articles from various sources, displaying all news articles, and showing headlines.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **All news articles**: View all available news articles from different sources.
+- **Headlines**: Get a quick overview of the latest headlines from different categories.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To run the News Aggregator locally make sure you have Angular 17 installed and follow these steps:
 
-## Build
+1. Clone this repository to your local machine.
+2. Navigate to the project directory.
+3. Run `npm install` to install the project dependencies.
+4. Run `ng serve` to start the development server.
+5. Open your web browser and navigate to `http://localhost:4200`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Usage
 
-## Running unit tests
+Once the application is running, you can perform the following actions:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Navigate to the "All News" section to view all available news articles.
+- Navigate to the "Headlines" section to view the latest headlines.
+- Click on individual articles to read the full content.
+- Log out to securely exit the application.
 
-## Running end-to-end tests
+## Routes
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The application uses Angular Router for navigation. Here are the main routes:
 
-## Further help
+- `/news/all`: Route to view all news articles.
+- `/news/headlines`: Route to view headlines.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
